@@ -82,3 +82,36 @@ NOTES
 -----
 - Missing values (NaNs) are handled by skipping grid cells with no valid SSTCI signal.
 - The code is designed to work on any lat/lon grid provided in SSTCI.nc.
+
+PLOTTING (RAW SSTCI vs EVENT-DAYS)
+---------------------------------
+A helper script is provided to visualize SSTCI before and after event detection
+for a single grid cell.
+
+Script:
+ Plot_before_after_RMmethod.m
+
+Inputs:
+  - SSTCI.nc     : contains SSTCI(time,lat,lon)
+  - CDHE_all.mat : contains CDHE (nLat x nLon cell array) and lat/lon vectors
+  - Date.mat     : contains Date (Nx3 [Year Month Day] or datetime vector)
+
+What the script plots:
+  (a) Raw daily SSTCI (with threshold highlighting)
+  (b) SSTCI values only during detected CDHE events (bars), overlaid on the raw SSTCI curve
+
+How to choose the location:
+  Edit:
+    lat_target = ...
+    lon_target = ...
+  The nearest grid cell in SSTCI.nc will be used.
+
+How to choose the year:
+  Edit:
+    year_range = [2022 2022];
+  Example for 2022:
+    year_range = [2022 2022];
+
+Threshold line:
+  Edit:
+    start_th_c = -2;
